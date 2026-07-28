@@ -15,6 +15,14 @@
 # gettop is duplicated here and in shell_utils.mk, because it's difficult
 # to find shell_utils.make without it for all the novel ways this file can be
 # sourced.  Other common functions should only be in one place or the other.
+
+# Check if the script is being sourced
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    echo "Error: This script must be sourced."
+    echo "Usage: source $(basename "$0")"
+    exit 1
+fi
+
 function _gettop_once
 {
     local TOPFILE=build/make/core/envsetup.mk
